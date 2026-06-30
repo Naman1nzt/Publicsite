@@ -57,7 +57,19 @@ const DATA = {
        approach:"Built a staged upgrade path with a rehearsal environment, validating VertiGIS and JS apps at each hop, with ArcGIS Monitor watching health throughout.",
        outcome:"Upgraded with every app intact and a tested rollback plan in hand.",
        tradeoff:"Insisted on a full rehearsal environment — extra setup time bought a near risk-free production upgrade.",
-       tech:["ArcGIS Enterprise","VertiGIS","ArcGIS Monitor","Azure"]}
+       tech:["ArcGIS Enterprise","VertiGIS","ArcGIS Monitor","Azure"]},
+      {name:"Oracle geodatabase site-to-site migration (HA)", lat:25.20, lon:55.27, role:"Database Migration architect", loc:"Dubai",
+        images: ["images/oracle_migration_architecture.png"],
+        repo: "https://github.com/Naman1nzt/oracle-geodatabase-migration",
+        links: [
+          { label: "Migration runbook", url: "https://github.com/Naman1nzt/oracle-geodatabase-migration#readme" },
+          { label: "FME + arcpy pipeline", url: "https://github.com/Naman1nzt/oracle-geodatabase-migration" }
+       ],
+       problem:"An ageing Oracle enterprise geodatabase had to move to a new, fully high-available Oracle environment on a different schema, carrying roughly 8 million records across many databases — some feature classes branch versioned (utility network / parcel data), others traditionally versioned — with zero data loss and an auditable cutover.",
+       approach:"Stood up the target as Oracle 19c on RAC with a Data Guard standby, enabled ST_Geometry and the enterprise geodatabase, and built a staged, restartable pipeline: Data Pump into a staging schema for raw speed, FME to map the old schema to the new model with geometry and attribute validation, and arcpy to load into non-versioned targets before re-registering versioning. Every batch committed against a control table so a network drop resumed cleanly with no duplicates.",
+       outcome:"A clean, reversible cutover onto a high-available platform: traditional classes re-registered and replicas rebuilt, branch classes re-published as feature services, indexes rebuilt and statistics gathered, and full data lineage documented end to end.",
+       tradeoff:"Migrated feature-class by feature-class with load-first / version-last rather than a big-bang clone — slower, but reversible at every step. Kept FORCE LOGGING on throughout to protect the standby, accepting the heavier archive-log volume instead of fast unrecoverable loads.",
+       tech:["Oracle 19c", "RAC", "Data Guard", "ArcGIS Enterprise", "FME", "Python / arcpy", "PL/SQL", "Data Pump", "RMAN"]}
     ]},
   automation:{ id:"L02", label:"Automation & Design", color:"#4f9be8",
     blurb:"Pipelines, monitoring, and field apps that run themselves.",
