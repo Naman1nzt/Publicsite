@@ -3,7 +3,14 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-<title>GIS Solution Architect — Interactive</title>
+<title>Naman Srivastava — GIS Solution Architect</title>
+<meta name="description" content="Naman Srivastava — GIS Solution Architect. Enterprise & cloud GIS: migrations, deployments, automation, and spatial analysis." />
+<meta property="og:title" content="Naman Srivastava — GIS Solution Architect" />
+<meta property="og:description" content="Enterprise & cloud GIS — migrations, deployments, automation, and analysis." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://naman1nzt.github.io/Publicsite/" />
+<meta property="og:image" content="https://naman1nzt.github.io/Publicsite/images/og-cover.png" />
+<meta name="twitter:card" content="summary_large_image" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -112,6 +119,12 @@
   .pj-tradeoff{background:var(--glass);border:1px solid var(--glass-bd);border-left:3px solid var(--pjc);border-radius:10px;padding:16px 18px;}
   .pj-tradeoff .tl{font-family:"IBM Plex Mono";font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);}
   .pj-tradeoff p{margin-top:7px;font-size:.96rem;color:#d4e2dd;line-height:1.6;}
+  .hdr-right{display:flex;align-items:center;gap:14px;pointer-events:auto;}
+  .ghlink{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:9px;
+    color:var(--paper);border:1px solid var(--glass-bd);background:var(--glass);transition:border-color .16s,color .16s;}
+  .ghlink:hover{border-color:var(--teal);color:var(--teal);}
+  .pj-gallery{margin-top:12px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;}
+  .pj-gallery img{width:100%;border-radius:10px;border:1px solid var(--glass-bd);display:block;background:#0c1822;}
   .pj-actions{margin-top:36px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;}
   .pj-actions a{display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:600;font-size:.92rem;border-radius:9px;padding:12px 18px;}
   .pj-repo{background:var(--glass);border:1px solid var(--glass-bd);color:var(--paper);}
@@ -158,10 +171,15 @@
 <header>
   <div class="brand">
     <svg width="28" height="28" viewBox="0 0 26 26" aria-hidden="true"><rect x="1" y="1" width="24" height="24" rx="5" fill="none" stroke="#2bbcb1" stroke-width="1.5"/><path d="M5 16 L10 9 L14 13 L21 6" fill="none" stroke="#2bbcb1" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="21" cy="6" r="2.1" fill="#e0922f"/></svg>
-    <!-- EDIT: name --><span class="nm">Your Name</span>
+    <span class="nm">Naman Srivastava</span>
     <span class="avail mono"><span class="dot"></span>Available for projects</span>
   </div>
-  <!-- EDIT: email --><a class="cta" href="mailto:you@example.com">Let's talk →</a>
+  <div class="hdr-right">
+    <a class="ghlink" href="https://github.com/Naman1nzt" target="_blank" rel="noopener" aria-label="GitHub">
+      <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.6 0 0 3.6 0 8a8 8 0 005.5 7.6c.4.1.5-.2.5-.4v-1.5c-2 .4-2.5-.5-2.7-1-.1-.2-.5-1-.8-1.1-.3-.2-.7-.5 0-.5.6 0 1 .6 1.2.8.7 1.2 1.9.9 2.3.7.1-.5.3-.9.5-1.1-1.8-.2-3.6-.9-3.6-4 0-.9.3-1.6.8-2.1-.1-.2-.4-1 .1-2.1 0 0 .7-.2 2.2.8a7.5 7.5 0 014 0c1.5-1 2.2-.8 2.2-.8.5 1.1.2 1.9.1 2.1.5.5.8 1.2.8 2.1 0 3.1-1.9 3.8-3.6 4 .3.3.5.8.5 1.5v2.2c0 .2.1.5.5.4A8 8 0 0016 8c0-4.4-3.6-8-8-8z"/></svg>
+    </a>
+    <a class="cta" href="mailto:naman.srivastava097@gmail.com">Let's talk →</a>
+  </div>
 </header>
 
 <div class="ui" id="overview">
@@ -192,6 +210,7 @@ const DATA = {
     blurb:"Designing and standing up enterprise GIS that holds under real load.",
     points:[
       {name:"ArcGIS Enterprise on AWS", lat:19.07, lon:72.87, role:"Lead solution architect", loc:"Mumbai region",
+       images:["images/sample-poc.png"],
        problem:"The client needed a resilient, scalable ArcGIS Enterprise platform without committing to over-provisioned fixed hardware.",
        approach:"Designed a multi-tier deployment on AWS behind a load balancer with autoscaling groups, provisioned end-to-end with Terraform so every environment is reproducible.",
        outcome:"Capacity that scales with demand, identical staging and production environments, and the whole platform defined as code.",
@@ -326,10 +345,11 @@ function renderProject(key,i){
       <div class="pj-sec"><h3>The approach</h3><p>${p.approach}</p></div>
       <div class="pj-sec"><h3>The outcome</h3><p>${p.outcome}</p></div>
       ${p.tradeoff?`<div class="pj-tradeoff"><div class="tl">Key trade-off</div><p>${p.tradeoff}</p></div>`:""}</div>
+    ${p.images&&p.images.length?`<div class="pj-sec" style="margin-top:26px"><h3>Proof of concept</h3><div class="pj-gallery">${p.images.map(s=>`<img src="${s}" alt="${p.name}" loading="lazy">`).join("")}</div></div>`:""}
     <div class="pj-actions">
-      <a class="pj-repo" href="https://github.com/your-username/${slug(p.name)}" target="_blank" rel="noopener">
+      <a class="pj-repo" href="https://github.com/Naman1nzt/${slug(p.name)}" target="_blank" rel="noopener">
         <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.6 0 0 3.6 0 8a8 8 0 005.5 7.6c.4.1.5-.2.5-.4v-1.5c-2 .4-2.5-.5-2.7-1-.1-.2-.5-1-.8-1.1-.3-.2-.7-.5 0-.5.6 0 1 .6 1.2.8.7 1.2 1.9.9 2.3.7.1-.5.3-.9.5-1.1-1.8-.2-3.6-.9-3.6-4 0-.9.3-1.6.8-2.1-.1-.2-.4-1 .1-2.1 0 0 .7-.2 2.2.8a7.5 7.5 0 014 0c1.5-1 2.2-.8 2.2-.8.5 1.1.2 1.9.1 2.1.5.5.8 1.2.8 2.1 0 3.1-1.9 3.8-3.6 4 .3.3.5.8.5 1.5v2.2c0 .2.1.5.5.4A8 8 0 0016 8c0-4.4-3.6-8-8-8z"/></svg>View repository</a>
-      <a class="pj-talk" href="mailto:you@example.com?subject=${encodeURIComponent(p.name)}">Discuss this →</a></div>
+      <a class="pj-talk" href="mailto:naman.srivastava097@gmail.com?subject=${encodeURIComponent(p.name)}">Discuss this →</a></div>
     <div class="pj-nav">
       ${prev?`<button data-go="project/${prev.k}/${prev.i}"><div class="pn-k">← Previous</div><div class="pn-t">${prev.p.name}</div></button>`:"<span></span>"}
       ${next?`<button class="next" data-go="project/${next.k}/${next.i}"><div class="pn-k">Next →</div><div class="pn-t">${next.p.name}</div></button>`:""}</div>`;
